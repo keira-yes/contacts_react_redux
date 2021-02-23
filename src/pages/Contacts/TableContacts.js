@@ -1,5 +1,3 @@
-import dateFormat from 'dateformat';
-import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -10,6 +8,9 @@ import Paper from '@material-ui/core/Paper';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import { makeStyles } from '@material-ui/core/styles';
+import { FormatDate } from '../../components/FormatDate';
+import { CopyToClipboardText } from '../../components/CopyToClipboardText';
 
 const useStyles = makeStyles({
   table: {
@@ -19,11 +20,6 @@ const useStyles = makeStyles({
     color: "#188FFF"
   }
 });
-
-const formatDate = (str) => {
-  const date = new Date(str);
-  return dateFormat(date, "dddd, m/d/yyyy, h:MM:ss TT")
-}
 
 export const TableContacts = ({ data }) => {
   const classes = useStyles();
@@ -53,12 +49,16 @@ export const TableContacts = ({ data }) => {
               </TableCell>
               <TableCell>
                 <Typography variant="body2">
-                  {formatDate(item.dob.date)}<br/>
+                  <FormatDate date={item.dob.date} /><br/>
                   {item.dob.age} years
                 </Typography>
               </TableCell>
-              <TableCell>{item.email}</TableCell>
-              <TableCell>{item.phone}</TableCell>
+              <TableCell>
+                <CopyToClipboardText copyText={item.email} />
+              </TableCell>
+              <TableCell>
+                <CopyToClipboardText copyText={item.phone} />
+              </TableCell>
               <TableCell>
                 /{item.location.country}/<br/>
                 {item.location.street.number} {item.location.street.name}, {item.location.city}, {item.location.state} {item.location.postcode}
