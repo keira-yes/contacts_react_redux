@@ -1,45 +1,34 @@
-import { useState, useEffect } from 'react';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { MainContacts } from './MainContacts';
 
-const useContacts = () => {
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-
-  useEffect(() => {
-    const getContacts = async () => {
-      try {
-        const response = await fetch("https://randomuser.me/api/?results=200");
-        const { results, error } = await response.json();
-        if (error) {
-          throw new Error(error);
-        }
-        setData(results);
-      } catch(e) {
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    getContacts();
-  }, []);
-
-  return {
-    data,
-    isLoading,
-    isError
-  }
-}
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    root: {
+      marginTop: theme.spacing(3),
+    },
+  })
+);
 
 export const Contacts = () => {
-  const contacts = useContacts();
+  const classes = useStyles();
 
-  if (contacts.isLoading) {
-    return <div>is loading...</div>
-  }
-
-  if (contacts.isError) {
-    return <div>Error!</div>
-  }
-
-  return <div>Contacts</div>
+  return (
+    <Container className={classes.root}>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <header>
+            <Typography variant="h3" component="h1">
+              Contacts
+            </Typography>
+          </header>
+        </Grid>
+        <Grid item xs={12}>
+          <MainContacts />
+        </Grid>
+      </Grid>
+    </Container>
+  )
 }
