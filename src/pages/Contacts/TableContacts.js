@@ -11,6 +11,7 @@ import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import { FormatDate } from '../../components/FormatDate';
 import { CopyToClipboardText } from '../../components/CopyToClipboardText';
+import { NATIONALITIES_TITLES, NATIONALITIES_CLASSES } from '../../constants/nationalities';
 
 const useStyles = makeStyles({
   table: {
@@ -60,10 +61,10 @@ export const TableContacts = ({ data }) => {
                 <CopyToClipboardText copyText={item.phone} />
               </TableCell>
               <TableCell>
-                /{item.location.country}/<br/>
-                {item.location.street.number} {item.location.street.name}, {item.location.city}, {item.location.state} {item.location.postcode}
+                <Typography>/{item.location.country}/</Typography>
+                <Typography>{item.location.street.number} {item.location.street.name}, {item.location.city}, {item.location.state} {item.location.postcode}</Typography>
               </TableCell>
-              <TableCell align="right">{item.nat}</TableCell>
+              <TableCell align="right" className={NATIONALITIES_CLASSES[item.nat]}>{NATIONALITIES_TITLES[item.nat]}</TableCell>
             </TableRow>
           ))}
         </TableBody>
