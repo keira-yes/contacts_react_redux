@@ -1,11 +1,12 @@
 import { useContacts } from "./useContacts";
 import { TableContacts } from "./TableContacts";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export const MainContacts = () => {
   const contacts = useContacts();
 
   if (contacts.isLoading) {
-    return <div>is loading...</div>
+    return <CircularProgress />
   }
 
   if (contacts.isError) {
