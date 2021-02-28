@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { MainContacts } from './MainContacts';
-import { VIEW_MODE } from '../../constants/viewMode';
-import { ViewModeButtons } from '../../components/ViewModeButtons'
+import { ViewModeButtons } from '../../components/ViewModeButtons';
+import { useViewMode } from './useViewMode';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -20,17 +19,9 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const getInitialViewMode = () => {
-  return localStorage.getItem("viewMode") || VIEW_MODE.TABLE;
-}
-
 export const Contacts = () => {
   const classes = useStyles();
-  const [viewMode, setViewMode] = useState(getInitialViewMode);
-
-  useEffect(() =>{
-    localStorage.setItem("viewMode", viewMode);
-  }, [viewMode])
+  const [viewMode, setViewMode] = useViewMode();
 
   return (
     <Container className={classes.root}>
