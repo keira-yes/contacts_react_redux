@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -23,23 +23,34 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
+const getInitialViewMode = () => {
+  return localStorage.getItem("viewMode") || VIEW_MODE.TABLE;
+}
+
 export const Contacts = () => {
   const classes = useStyles();
-  const [viewMode, setViewMode] = useState(VIEW_MODE.TABLE);
+  const [viewMode, setViewMode] = useState(getInitialViewMode);
 
   const handleChangeViewMode = (event, nextView) => {
     setViewMode(nextView);
   };
+
+  useEffect(() =>{
+    localStorage.setItem("viewMode", viewMode);
+  }, [viewMode])
 
   return (
     <Container className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <header className={classes.header}>
-            <Typography variant="h3" component="h1">
-              Contacts
-            </Typography>
-            <ToggleButtonGroup value={viewMode} size="small" exclusive onChange={handleChangeViewMode}>
+            <Typography variant="h3" component="h1">Contacts</Typography>
+            <ToggleButtonGroup
+              value={viewMode}
+              size="small"
+              exclusive
+              onChange={handleChangeViewMode}
+            >
               <ToggleButton value={VIEW_MODE.GRID} aria-label="Grid view mode">
                 <ViewModuleIcon />
               </ToggleButton>
