@@ -19,6 +19,15 @@ const useStyles = makeStyles({
   },
   link: {
     color: "#188FFF"
+  },
+  nationality: {
+    display: "inline-block",
+    padding: "7px",
+    borderRadius: "4px",
+    fontSize: "small",
+    lineHeight: 1,
+    color: "white",
+    whiteSpace: "nowrap"
   }
 });
 
@@ -64,7 +73,11 @@ export const TableContacts = ({ data }) => {
                 <Typography>/{item.location.country}/</Typography>
                 <Typography>{item.location.street.number} {item.location.street.name}, {item.location.city}, {item.location.state} {item.location.postcode}</Typography>
               </TableCell>
-              <TableCell align="right" className={NATIONALITIES_CLASSES[item.nat]}>{NATIONALITIES_TITLES[item.nat]}</TableCell>
+              <TableCell align="right">
+                <Typography className={`${classes.nationality} ${NATIONALITIES_CLASSES[item.nat]}`}>
+                  {NATIONALITIES_TITLES[item.nat]}
+                </Typography>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

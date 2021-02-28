@@ -6,3 +6,72 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.australian {
+  background: #E663B4;
+}
+
+.brazilian {
+  background: #F7D800;
+  color: #333!important;
+}
+
+.canadian {
+  background: #FB5D13;
+}
+
+.swiss {
+  background: #F99545;
+}
+
+.german {
+  background: #000;
+}
+
+.danish {
+  background: #A5DB4C;
+  color: #333!important;
+}
+
+.spanish {
+  background: #64C533;
+}
+
+.finnish {
+  background: #31C4C7;
+}
+
+.french {
+  background: #5FB4FE;
+}
+
+.british {
+  background: #4F70ED;
+}
+
+.irish {
+  background: #15965F;
+}
+
+.iranian {
+  background: #D30000;
+}
+
+.norwegian {
+  background: #002F83;
+}
+
+.dutch {
+  background: #F76D27;
+}
+
+.new-zealander {
+  background: #9F1B68;
+}
+
+.turkish {
+  background: #C71F2B;
+}
+
+.american {
+  background: #3A396B;
+}
