@@ -2,13 +2,10 @@ import { useState, useEffect } from 'react';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import ViewListIcon from '@material-ui/icons/ViewList';
-import ViewModuleIcon from '@material-ui/icons/ViewModule';
-import ToggleButton from '@material-ui/lab/ToggleButton';
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { MainContacts } from './MainContacts';
 import { VIEW_MODE } from '../../constants/viewMode';
+import { ViewModeButtons } from '../../components/ViewModeButtons'
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -31,10 +28,6 @@ export const Contacts = () => {
   const classes = useStyles();
   const [viewMode, setViewMode] = useState(getInitialViewMode);
 
-  const handleChangeViewMode = (event, nextView) => {
-    setViewMode(nextView);
-  };
-
   useEffect(() =>{
     localStorage.setItem("viewMode", viewMode);
   }, [viewMode])
@@ -45,19 +38,10 @@ export const Contacts = () => {
         <Grid item xs={12}>
           <header className={classes.header}>
             <Typography variant="h3" component="h1">Contacts</Typography>
-            <ToggleButtonGroup
-              value={viewMode}
-              size="small"
-              exclusive
-              onChange={handleChangeViewMode}
-            >
-              <ToggleButton value={VIEW_MODE.GRID} aria-label="Grid view mode">
-                <ViewModuleIcon />
-              </ToggleButton>
-              <ToggleButton value={VIEW_MODE.TABLE} aria-label="Data view mode">
-                <ViewListIcon />
-              </ToggleButton>
-            </ToggleButtonGroup>
+            <ViewModeButtons
+              viewMode={viewMode}
+              setViewMode={setViewMode}
+            />
           </header>
         </Grid>
         <Grid item xs={12}>
