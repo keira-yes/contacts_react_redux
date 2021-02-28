@@ -1,8 +1,9 @@
 import { useContacts } from "./useContacts";
 import { TableContacts } from "./TableContacts";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { VIEW_MODE } from '../../constants/viewMode';
 
-export const MainContacts = () => {
+export const MainContacts = ({ viewMode }) => {
   const contacts = useContacts();
 
   if (contacts.isLoading) {
@@ -15,7 +16,8 @@ export const MainContacts = () => {
 
   return (
     <main>
-      <TableContacts data={contacts.data}/>
+      {viewMode === VIEW_MODE.TABLE && <TableContacts data={contacts.data}/>}
+      {viewMode === VIEW_MODE.GRID && <div>Grid</div>}
     </main>
   )
 }

@@ -8,7 +8,7 @@ export const useContacts = () => {
   useEffect(() => {
     const getContacts = async () => {
       try {
-        const response = await fetch("https://randomuser.me/api/?results=200");
+        const response = await fetch("https://randomuser.me/api/?results=20");
         const { results, error } = await response.json();
         if (error) {
           throw new Error(error);
