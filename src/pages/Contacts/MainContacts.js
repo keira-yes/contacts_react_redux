@@ -17,7 +17,7 @@ export const MainContacts = ({ viewMode }) => {
   return (
     <main>
       {viewMode === VIEW_MODE.TABLE && <TableContacts data={contacts.data}/>}
-      {viewMode === VIEW_MODE.GRID && <div>Grid</div>}
+      {viewMode === VIEW_MODE.GRID && <div data-testid="contacts-grid">Grid</div>}
     </main>
   )
 }

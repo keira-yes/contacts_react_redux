@@ -18,10 +18,18 @@ export const ViewModeButtons = ({ viewMode, setViewMode }) => {
       exclusive
       onChange={handleChangeViewMode}
     >
-      <ToggleButton value={VIEW_MODE.GRID} aria-label="Grid view mode">
+      <ToggleButton
+        value={VIEW_MODE.GRID}
+        aria-label="Grid view mode"
+        data-testid="grid-view-mode-button"
+      >
         <ViewModuleIcon />
       </ToggleButton>
-      <ToggleButton value={VIEW_MODE.TABLE} aria-label="Data view mode">
+      <ToggleButton
+        value={VIEW_MODE.TABLE}
+        aria-label="Data view mode"
+        data-testid="table-view-mode-button"
+      >
         <ViewListIcon />
       </ToggleButton>
     </ToggleButtonGroup>
