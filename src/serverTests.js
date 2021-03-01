@@ -3,7 +3,8 @@ import { setupServer } from "msw/node";
 import { users } from "./__textures__/users";
 
 const handlers = [
-  rest.get('https://randomuser.me/api/?results=20', (req, res, ctx) => {
+  rest.get('https://randomuser.me/api/', (req, res, ctx) => {
+
     return res(
       ctx.status(200),
       ctx.json({
