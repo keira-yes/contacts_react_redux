@@ -11,7 +11,7 @@ export const MainContacts = ({ viewMode }) => {
   }
 
   if (contacts.isError) {
-    return <div>Error!</div>
+    return <div data-testid="contacts-error">Error!</div>
   }
 
   return (
